@@ -1,5 +1,6 @@
 package com.capgemini.training.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +13,8 @@ import com.capgemini.training.model.CovidTest;
 public class ClientDaoImpl implements ClientDao {
 	private static String SELECT_CLIENT_BY_ID = "SELECT * FROM clients WHERE clientId = ?";
 	private static String SELECT_CLIENT_BY_CREDENTIALS = "SELECT * FROM clients WHERE username = ? AND pwd = ?";
-	private static String ADD_CLIENT = "INSERT INTO clients(clientId, email, username, pwd, addressLine1, addressLine2, city, state, zipCode, insuranceNo, phone, firstName, lastName, cardNo, expMonth, expYear, securityCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static String UPDATE_CLIENT = "UPDATE clients SET email = ?, username = ?, pwd = ?, addressLine1 = ?, addressLine2 = ?, city = ?, state = ?, zipCode = ?, insuranceNo = ?, phone = ?, firstName = ?, lastName = ?, cardNo = ?, expMonth = ?, expYear = ?, securityCode = ? WHERE clientId = ?";
+	private static String ADD_CLIENT = "CALL addClient(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static String UPDATE_CLIENT = "CALL updateClient(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static String REMOVE_CLIENT = "DELETE FROM clients WHERE clientId = ?";
 	
 	@Override
@@ -89,26 +90,26 @@ public class ClientDaoImpl implements ClientDao {
 
 	@Override
 	public boolean addClient(Client client, Connection conn) {
-		try (PreparedStatement pstmt = conn.prepareStatement(ADD_CLIENT)) {
-			pstmt.setInt(1, client.getClientId());
-			pstmt.setString(2, client.getEmail());
-			pstmt.setString(3, client.getUsername());
-			pstmt.setString(4, client.getPassword());
-			pstmt.setString(5, client.getAddressLine1());
-			pstmt.setString(6, client.getAddressLine2());
-			pstmt.setString(7, client.getCity());
-			pstmt.setString(8, client.getState());
-			pstmt.setString(9, client.getZipCode());
-			pstmt.setString(10, client.getInsuranceNo());
-			pstmt.setString(11, client.getPhone());
-			pstmt.setString(12, client.getFirstName());
-			pstmt.setString(13, client.getLastName());
-			pstmt.setString(14, client.getCardNo());
-			pstmt.setInt(15, client.getExpMonth());
-			pstmt.setInt(16, client.getExpYear());
-			pstmt.setInt(17, client.getSecurityCode());
+		try (CallableStatement cstmt = conn.prepareCall(ADD_CLIENT)) {
+			cstmt.setInt("clientId", client.getClientId());
+			cstmt.setString("email", client.getEmail());
+			cstmt.setString("username", client.getUsername());
+			cstmt.setString("pwd", client.getPassword());
+			cstmt.setString("addressLine1", client.getAddressLine1());
+			cstmt.setString("addressLine2", client.getAddressLine2());
+			cstmt.setString("city", client.getCity());
+			cstmt.setString("state", client.getState());
+			cstmt.setString("zipCode", client.getZipCode());
+			cstmt.setString("insuranceNo", client.getInsuranceNo());
+			cstmt.setString("phone", client.getPhone());
+			cstmt.setString("firstName", client.getFirstName());
+			cstmt.setString("lastName", client.getLastName());
+			cstmt.setString("cardNo", client.getCardNo());
+			cstmt.setInt("expMonth", client.getExpMonth());
+			cstmt.setInt("expYear", client.getExpYear());
+			cstmt.setInt("securityCode", client.getSecurityCode());
 			
-			if (pstmt.executeUpdate() > 0) {
+			if (cstmt.executeUpdate() > 0) {
 				return true;
 			}
 			
@@ -121,26 +122,26 @@ public class ClientDaoImpl implements ClientDao {
 
 	@Override
 	public boolean updateClient(Client client, Connection conn) {
-		try (PreparedStatement pstmt = conn.prepareStatement(UPDATE_CLIENT)) {
-			pstmt.setString(1, client.getEmail());
-			pstmt.setString(2, client.getUsername());
-			pstmt.setString(3, client.getPassword());
-			pstmt.setString(4, client.getAddressLine1());
-			pstmt.setString(5, client.getAddressLine2());
-			pstmt.setString(6, client.getCity());
-			pstmt.setString(7, client.getState());
-			pstmt.setString(8, client.getZipCode());
-			pstmt.setString(9, client.getInsuranceNo());
-			pstmt.setString(10, client.getPhone());
-			pstmt.setString(11, client.getFirstName());
-			pstmt.setString(12, client.getLastName());
-			pstmt.setString(13, client.getCardNo());
-			pstmt.setInt(14, client.getExpMonth());
-			pstmt.setInt(15, client.getExpYear());
-			pstmt.setInt(16, client.getSecurityCode());
-			pstmt.setInt(17, client.getClientId());
+		try (CallableStatement cstmt = conn.prepareCall(UPDATE_CLIENT)) {
+			cstmt.setInt("clientId", client.getClientId());
+			cstmt.setString("email", client.getEmail());
+			cstmt.setString("username", client.getUsername());
+			cstmt.setString("pwd", client.getPassword());
+			cstmt.setString("addressLine1", client.getAddressLine1());
+			cstmt.setString("addressLine2", client.getAddressLine2());
+			cstmt.setString("city", client.getCity());
+			cstmt.setString("state", client.getState());
+			cstmt.setString("zipCode", client.getZipCode());
+			cstmt.setString("insuranceNo", client.getInsuranceNo());
+			cstmt.setString("phone", client.getPhone());
+			cstmt.setString("firstName", client.getFirstName());
+			cstmt.setString("lastName", client.getLastName());
+			cstmt.setString("cardNo", client.getCardNo());
+			cstmt.setInt("expMonth", client.getExpMonth());
+			cstmt.setInt("expYear", client.getExpYear());
+			cstmt.setInt("securityCode", client.getSecurityCode());
 			
-			if (pstmt.executeUpdate() > 0) {
+			if (cstmt.executeUpdate() > 0) {
 				return true;
 			}
 			

@@ -192,12 +192,12 @@ public class CovidTestServlet extends HttpServlet {
 	
 	private void toAdminLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		forwardDispatcher(request, response, "admin_login.jsp");		
+		forwardDispatcher(request, response, "admin_login.jsp");	
 	}
 	
 	private void toClientLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		forwardDispatcher(request, response, "/");		
+		forwardDispatcher(request, response, "/");
 	}
 	
 	private void signInClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -323,6 +323,8 @@ public class CovidTestServlet extends HttpServlet {
 		
 		clientService.updateClient(client);
 		
+		request.setAttribute("user", client);
+		
 		forwardDispatcher(request, response, "client_account_info.jsp");
 		
 	}
@@ -335,6 +337,8 @@ public class CovidTestServlet extends HttpServlet {
 
 		LabTechnician labTech = new LabTechnician(email, username, password, employeeId);
 		labTechService.updateLabTechnician(labTech);
+		
+		request.setAttribute("user", labTech);
 		
 		forwardDispatcher(request, response, "emp_account_info.jsp");
 		
@@ -375,7 +379,7 @@ public class CovidTestServlet extends HttpServlet {
 				firstName, lastName, cardNo, expMonth, expYear, securityCode);
 		clientService.addClient(client);
 		
-		response.sendRedirect("new_test");
+		forwardDispatcher(request, response, "/");
 		
 	}
 	
@@ -387,7 +391,7 @@ public class CovidTestServlet extends HttpServlet {
 		LabTechnician labTech = new LabTechnician(email, username, password, 0);
 		labTechService.addLabTechnician(labTech);
 		
-		response.sendRedirect("pending_tests");
+		forwardDispatcher(request, response, "admin_login.jsp");
 		
 	}	
 	
