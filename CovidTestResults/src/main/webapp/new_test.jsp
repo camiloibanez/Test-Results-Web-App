@@ -2,7 +2,7 @@
 
 <c:if test="${ isLoggedIn }">
 
-	<div class="container">
+	<div class="container container_w_graphic">
 	
 	<div class="graphic_grey2">
 	

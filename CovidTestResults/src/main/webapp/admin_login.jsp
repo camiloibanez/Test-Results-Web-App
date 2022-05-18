@@ -16,7 +16,7 @@
 	</nav>
 </div>
 
-<div class="container_grey">
+<div class="container_grey container_w_graphic">
 	<div class="graphic_grey">
 		<h1 class="emp_login_header">Employee Login Page</h1>
 		

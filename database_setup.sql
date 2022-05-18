@@ -1,6 +1,6 @@
 drop database if exists prelim_task_test_results_web_app;
 
-create database prelim_task_test_results_web_app;
+create database prelim_task_test_results_web_appcustomers;
 use prelim_task_test_results_web_app;
 
 create table clients (

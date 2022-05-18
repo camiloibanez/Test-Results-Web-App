@@ -123,23 +123,23 @@ public class ClientDaoImpl implements ClientDao {
 	@Override
 	public boolean updateClient(Client client, Connection conn) {
 		try (CallableStatement cstmt = conn.prepareCall(UPDATE_CLIENT)) {
-			cstmt.setInt("clientId", client.getClientId());
-			cstmt.setString("email", client.getEmail());
-			cstmt.setString("username", client.getUsername());
-			cstmt.setString("pwd", client.getPassword());
-			cstmt.setString("addressLine1", client.getAddressLine1());
-			cstmt.setString("addressLine2", client.getAddressLine2());
-			cstmt.setString("city", client.getCity());
-			cstmt.setString("state", client.getState());
-			cstmt.setString("zipCode", client.getZipCode());
-			cstmt.setString("insuranceNo", client.getInsuranceNo());
-			cstmt.setString("phone", client.getPhone());
-			cstmt.setString("firstName", client.getFirstName());
-			cstmt.setString("lastName", client.getLastName());
-			cstmt.setString("cardNo", client.getCardNo());
-			cstmt.setInt("expMonth", client.getExpMonth());
-			cstmt.setInt("expYear", client.getExpYear());
-			cstmt.setInt("securityCode", client.getSecurityCode());
+			cstmt.setInt("clientId_in", client.getClientId());
+			cstmt.setString("email_in", client.getEmail());
+			cstmt.setString("username_in", client.getUsername());
+			cstmt.setString("pwd_in", client.getPassword());
+			cstmt.setString("addressLine1_in", client.getAddressLine1());
+			cstmt.setString("addressLine2_in", client.getAddressLine2());
+			cstmt.setString("city_in", client.getCity());
+			cstmt.setString("state_in", client.getState());
+			cstmt.setString("zipCode_in", client.getZipCode());
+			cstmt.setString("insuranceNo_in", client.getInsuranceNo());
+			cstmt.setString("phone_in", client.getPhone());
+			cstmt.setString("firstName_in", client.getFirstName());
+			cstmt.setString("lastName_in", client.getLastName());
+			cstmt.setString("cardNo_in", client.getCardNo());
+			cstmt.setInt("expMonth_in", client.getExpMonth());
+			cstmt.setInt("expYear_in", client.getExpYear());
+			cstmt.setInt("securityCode_in", client.getSecurityCode());
 			
 			if (cstmt.executeUpdate() > 0) {
 				return true;

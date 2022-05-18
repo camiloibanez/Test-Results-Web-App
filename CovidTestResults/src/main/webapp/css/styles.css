@@ -14,6 +14,14 @@ color-text: #ffffff
 color-green: #9cff57
 
 color-red: #ff867c
+
+bp-largest: 75em  	// 1200px
+bp-large: 68.75em	// 1100px
+bp-medium: 56.25em	// 900px
+bp-small: 37.5em;          // 600px
+bp-smallest: 31.25em;      // 500px
+bp-even-smaller: 25em;     // 400px
+
 */
 
 /* Base */
@@ -29,6 +37,12 @@ html {
 	box-sizing: border-box;
 	font-size: 62.5%;
 	
+}
+
+@media only screen and (max-width: 68.75em) {
+	html {
+		font-size: 50%;
+	}
 }
 
 body {
@@ -57,6 +71,14 @@ body {
 	align-items: center;
 }
 
+@media only screen and (max-width: 75em) {
+	.main_nav,
+	.login_nav {
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+	}
+}
 .main_nav {
 	justify-content: space-between;
 	
@@ -160,17 +182,40 @@ body {
 .container_blue,
 .container_grey {
 	max-width: 120rem;
-	margin: 0 auto;
-	background: transparent;
+	margin: 0 auto 4rem auto;
 	box-shadow: 0 0 4rem rgba(0,0,0,0.2);
 	overflow: auto;
 	position:relative;
 	
-	min-height: 50rem;
-	height: 80vh;
+	min-height: 70rem;
 	color: #ffffff;
 }
 
+.container_w_graphic {
+	height: 80vh;
+}
+
+.container_flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+@media only screen and (max-width: 56.25em) {
+	.container_flex {
+		flex-direction: column;
+	}	
+}
+
+@media only screen and (max-width: 75em) {
+	.container,
+	.container_blue,
+	.container_grey {
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		min-height: 100vh;
+	}
+}
 .container {
 	background: transparent;	
 }
@@ -213,6 +258,18 @@ body {
 	background-position: 0 42rem;
 }
 
+@media only screen and (max-width: 56.25em) {
+	.graphic::after {
+		background-size: 70%;
+	}
+}
+
+@media only screen and (max-width: 37.5em) {
+	.graphic::after {
+		background-size: 100%;
+	}
+}
+
 .graphic_grey::after  {
 	background-image: linear-gradient(to top, #102027, #62727b);
 }
@@ -228,6 +285,13 @@ body {
 	font-size: 5rem;
 	top: 9%;
 	left: 10%;
+}
+
+@media only screen and (max-width: 37.5em) {
+	.client_login_header,
+	.emp_login_header {
+		font-size: 4rem;
+	}
 }
 
 .client_login_username,
@@ -488,13 +552,19 @@ body {
 	top: 76%;
 	left: 69%;
 }
+
+@media only screen and (max-width: 37.5em) {
+	.new_test_submit {
+		left: 59%;
+	}	
+}
  
 /* Table */
 table {
 	display: table;
     margin: 11rem auto 6rem auto;
     font-size: 1rem;
-    min-width: 40rem;
+    min-width: 49rem;
     width: 60%;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
     background: #37474f;
@@ -590,11 +660,24 @@ tr:hover th:last-child {
 	left:10%;	
 	font-size: 3rem; 
 }
+
 .emp_id {
 	position: absolute;
 	top: 5%;
 	left:30%;	
 	font-size: 5.5rem;
+}
+
+@media only screen and (max-width: 56.25em) {
+	.emp_id {
+		left: 37%;
+	}
+}
+
+@media only screen and (max-width: 37.5em) {
+	.emp_id {
+	left: 43%;
+	}
 }
 
 .emp_email {
@@ -825,6 +908,12 @@ tr:hover th:last-child {
 	left: 75%;
 }
 
+@media only screen and (max-width: 56.25em) {
+	.cl_btn {
+		left: auto;
+		right: 10%;
+	}
+}
 
 /* Edit Test */
 
@@ -900,13 +989,74 @@ tr:hover th:last-child {
 	font-weight: 600;
 }
 
+@media only screen and (max-width: 56.25em) {
+	.test_header {
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 9% 10% 0 10%;
+	}
+	
+	.test_date {
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 4% 10% 0 10%;
+	}
+	
+	.test_inst {
+		position: relative;
+		top: auto;	
+		left: auto;	
+		margin: 9% 10% 0 10%;
+	}
+	
+	.test_left {
+		position: relative;
+		top: auto;
+		left: auto;
+		margin: 20% 15% 0 15%;	
+	}
+	
+	.test_right {
+		border-left: none;
+		top: auto;
+		right: auto;
+		height: auto;
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+		margin: 4rem 0 0 0;
+	}
+	
+	.test_label_pos {
+		position: relative;
+		top: auto;
+		right: auto;
+	}
+	
+	.test_label_neg {
+		position: relative;
+		top: auto;
+		right: auto;
+	}
+	
+	.test_btn {
+		position: relative;
+		margin: 6rem 15%;
+		bottom: auto;
+		right: auto;
+		float: right;
+	}
+	
+}
+
 /* Review Tests */
 
 .pending_header {
-	position: absolute;
+	margin: 8% 10% 0 10%;
 	font-size: 3rem;
-	top:8%;
-	left: 10%;
 }
 
 .pending_header_none {
@@ -918,10 +1068,8 @@ tr:hover th:last-child {
 }
 
 .pending_text {
-	position: absolute;
+	margin: 12% 10% 0 10%;
 	font-size: 2rem;
-	top: 20%;
-	left: 10%;
 }
 
 .pill_single {
@@ -943,17 +1091,12 @@ tr:hover th:last-child {
 }
 
 .pending_tests {
-	position: absolute;
-	width: 40%;
-	top: 40%;
-	left: 10%;
+	margin: 28% 0 5rem 0;
+	width: 100%;
 }
 
 .completed_tests {
-	position: absolute;
 	width: 100%;
-	top: 14%;
-	right:0;
 }
 
 .pill_double {
@@ -987,20 +1130,48 @@ tr:hover th:last-child {
 }
 
 .pending_left {
-	position: abosolute;
-	top: 0;
-	left: 0;
 	width: 50%;
-	height: 100%;
 }
 
 .pending_right {
-	position: absolute;
-	top: 5%;
-	right: 0;
+	margin: 5% 0;
 	width: 50%;
-	height:90%;
 	border-left: 2px solid #62727b;
+}
+
+@media only screen and (max-width: 56.25em) {
+	.pending_left {
+		width: 100%;
+	}
+	
+	.pending_right {
+		margin: 0 5%;
+		width: 90%;
+		border-left: none;
+		border-top: 2px solid #62727b;
+	}
+	
+	.pill_double {
+		width: calc(75% * (1/.9));
+	}
+	
+	.completed_tests {
+		margin-top: 5rem;
+	}
+}
+
+@media only screen and (min-width: 31.25em) and (max-width: 56.25em) {
+	.pending_header {
+		margin-left: 18%;
+	}
+	
+	.pending_text {
+		margin: 6% 10% 0 15%;
+	}
+	
+	.pending_tests {
+		margin-top: 12%;
+	}
 }
 
 /* 401 Error */

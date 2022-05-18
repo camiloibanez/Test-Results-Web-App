@@ -16,7 +16,7 @@
 	</nav>
 </div>
 
-<div class="container">
+<div class="container container_w_graphic">
 	<div class="graphic">
 		<h1 class="client_login_header">Client Login Page</h1>
 		

@@ -2,7 +2,7 @@
 
 <c:if test="${ isLoggedIn }">
 
-	<div class="container">
+	<div class="container container_flex">
 	
 	<div class="pending_left">
 	
